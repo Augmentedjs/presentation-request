@@ -1,0 +1,344 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>request.js</title>
+		<link rel="icon" type="image/png" href="favicon.png"/>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #607D8B;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #607D8B;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #607D8B;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #607D8B;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"ddd MMM Do YYYY","systemName":"Augmented.js Next Presentation","systemSummary":"Augmented.js Next Presentation - Simply Development.","systemLogo":"img/jensen-silo-circle-small.png","systemColor":"#607D8B","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"<a href='http://www.augmentedjs.com'>Augmented.js Homepage</a>","copyright":"","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":false,"sort":"linenum, longname, version, since","search":true,"favicon":"favicon.png","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false,"logoFile":"public/images/jensen-silo-circle-small.png","navType":"vertical","protocol":"html://"};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/jensen-silo-circle-small.png);">
+					Augmented.js Next Presentation
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#request">request</a></li>
+											<li><a href="global.html#sync">sync</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_namespace.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="Configuration.xhrFields.html">Configuration.xhrFields</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">request.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import HEADERS from "./headers.js";
+import DATA_TYPE from "./dataType.js";
+
+const ASYNC = true; // Sync no longer supported by most clients
+
+function mockXHR() {
+  this.responseType = DATA_TYPE.TEXT;
+  this.responseText = "";
+  this.async = true;
+  this.status = 200;
+  this.header = {};
+  this.timeout = 70;
+  this.open = (method, uri, ASYNC, user, password) => {
+    this.url = uri;
+    this.async = ASYNC;
+    this.user = user;
+    this.method = method;
+  };
+  this.send = () => {
+    this.onload();
+  };
+  this.setRequestHeader = (header, value) => {
+    this.header.header = value;
+  };
+  this.done = () => {};
+  this.fail = () => {};
+  this.always = () => {};
+  this.then = () => {};
+  this.options = {};
+};
+
+/**
+ * AJAX capability using simple jQuery-like API&lt;br/>
+ * Supports the following object properties and features:
+ * &lt;ul>
+ * &lt;li>method&lt;/li>
+ * &lt;li>url&lt;/li>
+ * &lt;li>contentType&lt;/li>
+ * &lt;li>dataType&lt;/li>
+ * &lt;li>beforeSend function&lt;/li>
+ * &lt;li>success callback&lt;/li>
+ * &lt;li>failure callback&lt;/li>
+ * &lt;li>complete callback&lt;/li>
+ * &lt;li>user&lt;/li>
+ * &lt;li>password&lt;/li>
+ * &lt;li>withCredentials&lt;/li>
+ * &lt;li>cache&lt;/li>
+ * &lt;li>timeout&lt;/li>
+ * &lt;li>mock - special flag for mocking response&lt;/li>
+ * &lt;/ul>
+ * @static
+ * @param {Presentation.Request.Configuration} configuration object of configuration properties and callbacks.
+ * @returns success or failure callback
+ * @deprecated Use fetch
+ * @example Presentation.request({
+ *         url: uri,
+ *         contentType: "text/plain",
+ *         dataType: "text",
+ *         success: function (data, status) { ... },
+ *         error: function (data, status) { ... }
+ *     });
+ */
+const request = (configuration) => {
+  //console.debug("AUGMENTED: Ajax object: " + JSON.stringify(configuration));
+  let xhr = null;
+
+  if (configuration &amp;&amp; configuration.url) {
+    //console.warn("AUGMENTED: Ajax Here");
+    let type = configuration.type;
+
+    if (!configuration.method &amp;&amp; configuration.type) {
+      configuration.method = configuration.type;
+    }
+
+    let method = (configuration.method) ? configuration.method : "GET";
+    let cache = (configuration.cache) ? (configuration.cache) : true;
+//console.warn("AUGMENTED: Ajax Here 2", (configuration.mock));
+    xhr = (configuration.mock) ? new mockXHR() : new XMLHttpRequest();
+    //console.warn("AUGMENTED: Ajax xhr", xhr);
+    if (configuration.timeout) {
+      xhr.timeout = configuration.timeout;
+    }
+    //const ASYNC = true; //(configuration.async !== undefined) ? configuration.async : true;
+
+    // CORS &amp; Async
+    if (configuration.crossDomain &amp;&amp; configuration.xhrFields &amp;&amp; configuration.xhrFields.withCredentials) {
+      xhr.withCredentials = configuration.xhrFields.withCredentials;
+      // Sync Not supported for all browsers in CORS mode
+      //if (!async) {
+      //  logger.warn("AUGMENTED: Augmented.Request: Sync Not supported for all browsers in CORS mode!");
+      //}
+      //async = true;
+    }
+
+    if (ASYNC &amp;&amp; configuration.dataType) {
+      xhr.responseType = (configuration.dataType) ? configuration.dataType : DATA_TYPE.TEXT;
+    }
+
+    xhr.open(method, encodeURI(configuration.url), ASYNC,
+      (configuration.user !== undefined) ? configuration.user : "",
+      (configuration.password !== undefined) ? configuration.password : "");
+    xhr.setRequestHeader(HEADERS.TYPE, (configuration.contentType) ? configuration.contentType : HEADERS.TEXT);
+
+    if (configuration.dataType === DATA_TYPE.JSON) {
+      xhr.setRequestHeader(HEADERS.ACCEPT, HEADERS.APPLICATION);
+    }
+
+    if (!cache) {
+      xhr.setRequestHeader(HEADERS.CACHE, HEADERS.NO_CACHE);
+    }
+
+    // CORS
+    if (xhr.withCredentials) {
+      let allowOrigins = "*", allowMethods = "GET";
+      if (configuration.allowOrigins) {
+        allowOrigins = configuration.allowOrigins;
+      }
+      if (configuration.allowMethods) {
+        allowMethods = configuration.allowMethods;
+      }
+
+      xhr.setRequestHeader(HEADERS.ALLOW_ORIGINS, allowOrigins);
+      xhr.setRequestHeader(HEADERS.ALLOW_METHODS, allowMethods);
+    }
+
+    // Authorization
+    if (xhr.withCredentials &amp;&amp; configuration.user &amp;&amp; configuration.password) {
+      xhr.setRequestHeader(HEADERS.AUTH, "Basic " + window.btoa(configuration.user + ":" + configuration.password));
+    }
+
+    // custom headers
+    if (configuration.headers) {
+      let i = 0, keys = Object.keys(configuration.headers), l = keys.length;
+
+      for (i = 0; i &lt; l; i++) {
+        xhr.setRequestHeader(keys[i], configuration.headers[keys[i]]);
+      }
+    }
+
+    xhr.onload = () => {
+      try {
+        if (xhr.status > 199 &amp;&amp; xhr.status &lt; 399) {
+          if (configuration.success) {
+            if (xhr.responseType === "" || xhr.responseType === DATA_TYPE.TEXT) {
+              if (xhr.responseText) {
+                configuration.success(xhr.responseText, xhr.status, xhr);
+              } else {
+                console.warn("AUGMENTED: Ajax (" + xhr.responseType + " responseType) did not return anything.");
+                configuration.success("", xhr.status, xhr);
+              }
+            } else if (xhr.responseType === DATA_TYPE.JSON) {
+              if (xhr.response) {
+                //console.debug("AUGMENTED: Ajax (JSON responseType) native JSON.");
+                configuration.success(xhr.response, xhr.status, xhr);
+              } else if (xhr.responseText) {
+                //console.debug("AUGMENTED: Ajax (JSON responseType) parsed JSON from string.");
+                configuration.success(JSON.parse(xhr.responseText), xhr.status, xhr);
+              } else {
+                console.warn("AUGMENTED: Ajax (" + xhr.responseType + " responseType) did not return anything.");
+                configuration.success("", xhr.status, xhr);
+              }
+            } else {
+              if (xhr.responseText) {
+                configuration.success(xhr.responseText, xhr.status, xhr);
+              } else if (xhr.response) {
+                configuration.success(xhr.response, xhr.status, xhr);
+              } else {
+                console.warn("AUGMENTED: Ajax (" + xhr.responseType + " responseType) did not return anything.");
+                configuration.success("", xhr.status, xhr);
+              }
+            }
+          }
+        } else if (xhr.status > 399 &amp;&amp; xhr.status &lt; 600) {
+          if (configuration.failure) {
+            configuration.failure(xhr, xhr.status, xhr.statusText);
+          } else if (configuration.error) {
+            configuration.error(xhr, xhr.status, xhr.statusText);
+          }
+        }
+      } catch(e) {
+        console.error("AUGMENTED: Ajax (" + e + ")");
+        if (configuration &amp;&amp; configuration.error) {
+          configuration.error(xhr, xhr.status, xhr.statusText);
+        }
+        return xhr;
+      }
+      if (configuration.complete) {
+        configuration.complete(xhr, xhr.status);
+      }
+      return xhr;
+    };
+
+    if (configuration.beforeSend) {
+      configuration.beforeSend(xhr);
+    }
+    xhr.send(((configuration.data) ? configuration.data : ""));
+  }
+
+  //console.debug("AUGMENTED: Ajax status (" + xhr.status + ")");
+
+  return xhr;
+};
+
+export default request;
+</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option"><a href='http://www.augmentedjs.com'>Augmented.js Homepage</a></div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 9th 2018 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

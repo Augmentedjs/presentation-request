@@ -1,2 +1,2 @@
 # presentation-request
-Augmented.js Presentation Dom Module
+Augmented.js Presentation Request Module
