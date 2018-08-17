@@ -11,7 +11,7 @@ function mockXHR() {
   this.header = {};
   this.timeout = 70;
   this.open = (method, uri, ASYNC, user, password) => {
-    this.url = uri;
+    this.uri = uri;
     this.async = ASYNC;
     this.user = user;
     this.method = method;
@@ -34,7 +34,7 @@ function mockXHR() {
  * Supports the following object properties and features:
  * <ul>
  * <li>method</li>
- * <li>url</li>
+ * <li>uri</li>
  * <li>contentType</li>
  * <li>dataType</li>
  * <li>beforeSend function</li>
@@ -49,11 +49,11 @@ function mockXHR() {
  * <li>mock - special flag for mocking response</li>
  * </ul>
  * @static
- * @param {Presentation.Request.Configuration} configuration object of configuration properties and callbacks.
+ * @param {Configuration} configuration object of configuration properties and callbacks.
  * @returns success or failure callback
- * @deprecated Use fetch
- * @example Presentation.request({
- *         url: uri,
+ * @deprecated Use fetch or sync
+ * @example request({
+ *         uri: uri,
  *         contentType: "text/plain",
  *         dataType: "text",
  *         success: function (data, status) { ... },
@@ -64,7 +64,7 @@ const request = (configuration) => {
   //console.debug("AUGMENTED: Ajax object: " + JSON.stringify(configuration));
   let xhr = null;
 
-  if (configuration && configuration.url) {
+  if (configuration && configuration.uri) {
     //console.warn("AUGMENTED: Ajax Here");
     let type = configuration.type;
 
@@ -96,7 +96,7 @@ const request = (configuration) => {
       xhr.responseType = (configuration.dataType) ? configuration.dataType : DATA_TYPE.TEXT;
     }
 
-    xhr.open(method, encodeURI(configuration.url), ASYNC,
+    xhr.open(method, encodeURI(configuration.uri), ASYNC,
       (configuration.user !== undefined) ? configuration.user : "",
       (configuration.password !== undefined) ? configuration.password : "");
     xhr.setRequestHeader(HEADERS.TYPE, (configuration.contentType) ? configuration.contentType : HEADERS.TEXT);

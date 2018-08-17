@@ -1,6 +1,7 @@
 import METHOD_MAP from "./methodMap.js";
 import request from "./request.js";
 import DATA_TYPE from "./dataType.js";
+import HEADERS from "./headers.js";
 
 // pull from Next as a module
 const isFunction = (name) => {
@@ -12,8 +13,8 @@ const isFunction = (name) => {
  */
 const sync = async (method, model, options) => {
   if (!model) {
-    console.error("no model to sync!");
-    throw new Error("no model to sync!");
+    console.error("No model to sync!");
+    throw new Error("No model to sync!");
   }
 
   let data = null;
@@ -24,25 +25,28 @@ const sync = async (method, model, options) => {
   // Default JSON-request options.
   const params = {
     type: type,
-    dataType: DATA_TYPE.JSON
+    dataType: DATA_TYPE.JSON,
+    success: options.success,
+    error: options.error
   };
 
-  // Ensure that we have a URL.
-  if (!options.url) {
-    if (model && model.url) {
-      if (isFunction(model.url)) {
-        options.url = model.url();
+  // Ensure that we have a uri.
+  if (!options.uri) {
+    if (model && model.uri) {
+      if (isFunction(model.uri)) {
+        options.uri = model.uri();
       } else {
-        options.url = model.url;
+        options.uri = model.uri;
       }
     } else {
-      throw new Error(`A "url" property or model with "url" must be specified in the collection or model class!`);
+      throw new Error(`A "uri" property or model with "uri" must be specified in the collection or model class!`);
     }
   }
 
   // Ensure that we have the appropriate request data.
-  if (options.data == null && model && (method === METHOD_MAP.CREATE || method === METHOD_MAP.UPDATE || method === METHOD_MAP.PATCH)) {
-    params.contentType = "application/json";
+  if (options.data == null && model &&
+        (method === METHOD_MAP.CREATE || method === METHOD_MAP.UPDATE || method === METHOD_MAP.PATCH)) {
+    params.contentType = HEADERS.APPLICATION;
     params.data = JSON.stringify(options.attrs || model.toJSON(options));
   }
 
@@ -54,7 +58,7 @@ const sync = async (method, model, options) => {
 
   const myData = (params.data) ? JSON.stringify(data) : null;
 
-  const ret = await fetch(options.url, {
+  const ret = await fetch(options.uri, {
     "method": params.type,
     "headers": {"Content-Type": params.contentType},
     "credentials": 'include',
@@ -65,7 +69,7 @@ const sync = async (method, model, options) => {
       //console.debug("fetch finished");
       return res.json();
     }
-    throw new Error(`${res.status}: ${params.url} ${res.statusText} `);
+    throw new Error(`${res.status}: ${params.uri} ${res.statusText} `);
   }).then((response) => {
     //console.debug(`Response: ${JSON.stringify(response)}`);
     model.set(response);

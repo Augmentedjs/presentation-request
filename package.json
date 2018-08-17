@@ -1,6 +1,6 @@
 {
   "name": "presentation-request",
-  "version": "2.5.2",
+  "version": "2.6.0",
   "description": "The Augmented.js Next - Presentation Request Module.",
   "main": "dist/presentation-request.js",
   "scripts": {
