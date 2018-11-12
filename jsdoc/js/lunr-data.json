@@ -58,22 +58,13 @@
           "list:namespac",
           "namespac"
         ],
-        "Configuration.xhrFields.html": [
-          "configuration.xhrfield",
+        "xhrFields.html": [
           "namespac",
           "properti",
           "xhrfield"
-        ],
-        "Configuration.xhrFields.html#.withCredentials": [
-          "configuration.xhrfields.withcredenti",
-          "lt;static&gt",
-          "member",
-          "properti",
-          "withcredenti",
-          "xhrfields.withcredenti"
         ]
       },
-      "length": 5
+      "length": 4
     },
     "tokenStore": {
       "root": {
@@ -226,8 +217,8 @@
                             "ref": "list_namespace.html",
                             "tf": 635
                           },
-                          "Configuration.xhrFields.html": {
-                            "ref": "Configuration.xhrFields.html",
+                          "xhrFields.html": {
+                            "ref": "xhrFields.html",
                             "tf": 110
                           }
                         }
@@ -275,12 +266,8 @@
                       "docs": {},
                       "i": {
                         "docs": {
-                          "Configuration.xhrFields.html": {
-                            "ref": "Configuration.xhrFields.html",
-                            "tf": 25
-                          },
-                          "Configuration.xhrFields.html#.withCredentials": {
-                            "ref": "Configuration.xhrFields.html#.withCredentials",
+                          "xhrFields.html": {
+                            "ref": "xhrFields.html",
                             "tf": 25
                           }
                         }
@@ -405,162 +392,6 @@
                 }
               }
             }
-          },
-          "t": {
-            "docs": {},
-            ";": {
-              "docs": {},
-              "s": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "c": {
-                          "docs": {},
-                          "&": {
-                            "docs": {},
-                            "g": {
-                              "docs": {},
-                              "t": {
-                                "docs": {
-                                  "Configuration.xhrFields.html#.withCredentials": {
-                                    "ref": "Configuration.xhrFields.html#.withCredentials",
-                                    "tf": 50
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "c": {
-          "docs": {},
-          "o": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "f": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "g": {
-                    "docs": {},
-                    "u": {
-                      "docs": {},
-                      "r": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "n": {
-                                  "docs": {},
-                                  ".": {
-                                    "docs": {},
-                                    "x": {
-                                      "docs": {},
-                                      "h": {
-                                        "docs": {},
-                                        "r": {
-                                          "docs": {},
-                                          "f": {
-                                            "docs": {},
-                                            "i": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "l": {
-                                                  "docs": {},
-                                                  "d": {
-                                                    "docs": {
-                                                      "Configuration.xhrFields.html": {
-                                                        "ref": "Configuration.xhrFields.html",
-                                                        "tf": 1150
-                                                      }
-                                                    },
-                                                    "s": {
-                                                      "docs": {},
-                                                      ".": {
-                                                        "docs": {},
-                                                        "w": {
-                                                          "docs": {},
-                                                          "i": {
-                                                            "docs": {},
-                                                            "t": {
-                                                              "docs": {},
-                                                              "h": {
-                                                                "docs": {},
-                                                                "c": {
-                                                                  "docs": {},
-                                                                  "r": {
-                                                                    "docs": {},
-                                                                    "e": {
-                                                                      "docs": {},
-                                                                      "d": {
-                                                                        "docs": {},
-                                                                        "e": {
-                                                                          "docs": {},
-                                                                          "n": {
-                                                                            "docs": {},
-                                                                            "t": {
-                                                                              "docs": {},
-                                                                              "i": {
-                                                                                "docs": {
-                                                                                  "Configuration.xhrFields.html#.withCredentials": {
-                                                                                    "ref": "Configuration.xhrFields.html#.withCredentials",
-                                                                                    "tf": 1100
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "x": {
@@ -579,120 +410,9 @@
                       "docs": {},
                       "d": {
                         "docs": {
-                          "Configuration.xhrFields.html": {
-                            "ref": "Configuration.xhrFields.html",
-                            "tf": 775
-                          }
-                        },
-                        "s": {
-                          "docs": {},
-                          ".": {
-                            "docs": {},
-                            "w": {
-                              "docs": {},
-                              "i": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "h": {
-                                    "docs": {},
-                                    "c": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "e": {
-                                          "docs": {},
-                                          "d": {
-                                            "docs": {},
-                                            "e": {
-                                              "docs": {},
-                                              "n": {
-                                                "docs": {},
-                                                "t": {
-                                                  "docs": {},
-                                                  "i": {
-                                                    "docs": {
-                                                      "Configuration.xhrFields.html#.withCredentials": {
-                                                        "ref": "Configuration.xhrFields.html#.withCredentials",
-                                                        "tf": 100
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "m": {
-          "docs": {},
-          "e": {
-            "docs": {},
-            "m": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "Configuration.xhrFields.html#.withCredentials": {
-                        "ref": "Configuration.xhrFields.html#.withCredentials",
-                        "tf": 110
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "w": {
-          "docs": {},
-          "i": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "h": {
-                "docs": {},
-                "c": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "d": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "n": {
-                            "docs": {},
-                            "t": {
-                              "docs": {},
-                              "i": {
-                                "docs": {
-                                  "Configuration.xhrFields.html#.withCredentials": {
-                                    "ref": "Configuration.xhrFields.html#.withCredentials",
-                                    "tf": 675
-                                  }
-                                }
-                              }
-                            }
+                          "xhrFields.html": {
+                            "ref": "xhrFields.html",
+                            "tf": 1925
                           }
                         }
                       }
@@ -704,29 +424,23 @@
           }
         }
       },
-      "length": 23
+      "length": 16
     },
     "corpusTokens": [
       "augmented.j",
-      "configuration.xhrfield",
-      "configuration.xhrfields.withcredenti",
       "develop",
       "document",
       "global",
       "index",
       "list",
       "list:namespac",
-      "lt;static&gt",
-      "member",
       "namespac",
       "next",
       "present",
       "properti",
       "readm",
       "simpli",
-      "withcredenti",
-      "xhrfield",
-      "xhrfields.withcredenti"
+      "xhrfield"
     ],
     "pipeline": [
       "trimmer",
@@ -768,26 +482,16 @@
       "description": "",
       "body": ""
     },
-    "Configuration.xhrFields.html": {
-      "id": "Configuration.xhrFields.html",
+    "xhrFields.html": {
+      "id": "xhrFields.html",
       "kind": "namespace",
       "title": "xhrFields",
-      "longname": "Configuration.xhrFields",
+      "longname": "xhrFields",
       "name": "xhrFields",
-      "tags": "Configuration.xhrFields xhrFields",
+      "tags": "xhrFields",
       "summary": "",
       "description": "xhrFields property",
       "body": ""
-    },
-    "Configuration.xhrFields.html#.withCredentials": {
-      "id": "Configuration.xhrFields.html#.withCredentials",
-      "kind": "member",
-      "title": "&lt;static&gt; withCredentials",
-      "longname": "Configuration.xhrFields.withCredentials",
-      "name": "withCredentials",
-      "tags": "Configuration.xhrFields.withCredentials xhrFields.withCredentials withCredentials",
-      "summary": "",
-      "description": "withCredentials property"
     }
   }
 }
