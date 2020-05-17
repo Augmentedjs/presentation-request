@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
-    "test": "mocha --require @babel/register --require test/helper.js -c test/*Spec.js",
+    "test": "mocha --require @babel/register --require test/helper.js -c test/*Spec.js --timeout 5000",
     "start": "node index.js",
     "docs": "rm -rf jsdoc && jsdoc ./src -r -d ./jsdoc/ -R ./README.md -t ./node_modules/foodoc/template -c ./jsdoc.conf.json -P ./package.json",
     "readme": "./node_modules/documentation/bin/documentation.js readme ./src/index.js -f md --section=API",

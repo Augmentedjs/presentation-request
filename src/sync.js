@@ -1,7 +1,6 @@
 import METHOD_MAP from "./methodMap.js";
 import DATA_TYPE from "./dataType.js";
 import HEADERS from "./headers.js";
-// import request from "./request.js";
 
 // pull from Next as a module
 const isFunction = (name) => {
@@ -72,7 +71,7 @@ const sync = async (method, model, options = {}) => {
     throw new Error(`${res.status}: ${params.uri} ${res.statusText} `);
   })
   .then((response) => {
-    //console.debug(`Response: ${JSON.stringify(response)}`);
+    // console.debug(`Response: ${JSON.stringify(response)}`);
     model.set(response);
     data = response;
     return response;

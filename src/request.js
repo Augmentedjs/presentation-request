@@ -61,7 +61,8 @@ function mockXHR() {
  *     });
  */
 const request = (configuration) => {
-  //console.debug("AUGMENTED: Ajax object: " + JSON.stringify(configuration));
+  console.warn("Request is deprecated, please use fetch.");
+  // console.debug("AUGMENTED: Ajax object: " + JSON.stringify(configuration));
   let xhr = null;
 
   if (configuration && configuration.uri) {
