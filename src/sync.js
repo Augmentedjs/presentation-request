@@ -10,26 +10,37 @@ const isFunction = (name) => {
 /**
  * Base sync method that can pass special augmented features
  */
-const sync = async (method, model, options = {}) => {
+const sync = async (method = METHOD_MAP.READ, model, options = {}) => {
   if (!model) {
-    console.error("No model to sync!");
     throw new Error("No model to sync!");
   }
 
-  let data = null;
+  // Logger.debug("sync", method, "options", options)
 
-  const type = (method) ? METHOD_MAP[method] : METHOD_MAP.READ;
+  if (options.attrs) {
+    Logger.warn("options.attrs is deprecated, please use options.data");
+    options.data = options.attrs;
+  }
+
+  // let data = null;
+
+  const type = (method) ? METHOD_MAP[String(method).toUpperCase()] : METHOD_MAP.READ;
+
+  // Logger.debug("parsed method", type);
+
   // Default JSON-request options.
   const params = {
     type: type,
     dataType: DATA_TYPE.JSON,
+    contentType: HEADERS.APPLICATION,
     success: options.success,
-    error: options.error
+    error: options.error,
+    data: null
   };
 
   // Ensure that we have a uri.
   if (!options.uri) {
-    if (model && model.uri) {
+    if (model.uri) {
       if (isFunction(model.uri)) {
         options.uri = model.uri();
       } else {
@@ -40,40 +51,27 @@ const sync = async (method, model, options = {}) => {
     }
   }
 
-  // Ensure that we have the appropriate request data.
-  if (options.data == null && model &&
-        (method === METHOD_MAP.CREATE || method === METHOD_MAP.UPDATE || method === METHOD_MAP.PATCH)) {
-    params.contentType = HEADERS.APPLICATION;
-    params.data = JSON.stringify(options.attrs || model.toJSON(options));
-  }
+  params.data = (!options.data) ? model.toString(options) : JSON.stringify(options.data);
 
-  // TODO: figure out what this was supposed to do.
-  // Don't process data on a non-GET request.
-  // if (params.type !== METHOD_MAP.READ) {
-    //params.processData = false;
-    // params.data = null;
-  // }
-
-  const myData = (params.data) ? JSON.stringify(data) : null;
+  // Logger.debug("data to send", params.data);
 
   return await fetch(options.uri, {
     "method": params.type,
     "headers": {"Content-Type": params.contentType},
-    "credentials": 'include',
-    "body": myData
+    "credentials": "include",
+    "body": (params.type !== METHOD_MAP.READ && params.type !== METHOD_MAP.DELETE) ? params.data: null
   })
   .then((res) => {
-    //console.debug(`Status: ${res.status}`);
+    // Logger.debug(`Status: ${res.status}`);
     if(res.ok) {
-      //console.debug("fetch finished");
+      // Logger.debug("fetch finished", res);
       return res.json();
     }
-    throw new Error(`${res.status}: ${params.uri} ${res.statusText} `);
+    throw new Error(`${res.status}: ${params.uri} ${res.statusText}`);
   })
   .then((response) => {
-    // console.debug(`Response: ${JSON.stringify(response)}`);
+    // Logger.debug(`Response: ${JSON.stringify(response)}`);
     model.set(response);
-    data = response;
     return response;
   })
   .then((response) => {
@@ -85,14 +83,14 @@ const sync = async (method, model, options = {}) => {
   .then((response) => {
     // null is the old xhr
     model.trigger("request", model, null, options);
-    //console.debug("completing sync");
+    // Logger.debug("completing sync");
     return response;
   })
   .catch((error) => {
     if (params.error) {
       return params.error(error);
     }
-    console.error(error);
+    Logger.error(error);
     return error;
   });
 };
