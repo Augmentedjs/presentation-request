@@ -18,7 +18,7 @@ const sync = async (method = METHOD_MAP.READ, model, options = {}) => {
   // Logger.debug("sync", method, "options", options)
 
   if (options.attrs) {
-    Logger.warn("options.attrs is deprecated, please use options.data");
+    console.warn("options.attrs is deprecated, please use options.data");
     options.data = options.attrs;
   }
 
@@ -90,7 +90,7 @@ const sync = async (method = METHOD_MAP.READ, model, options = {}) => {
     if (params.error) {
       return params.error(error);
     }
-    Logger.error(error);
+    console.error(error);
     return error;
   });
 };
