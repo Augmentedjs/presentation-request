@@ -54,6 +54,33 @@ const sync = async (method = METHOD_MAP.READ, model, options = {}) => {
   params.data = (!options.data) ? model.toString(options) : JSON.stringify(options.data);
 
   // Logger.debug("data to send", params.data);
+  if (params.type === METHOD_MAP.DELETE) {
+    return await fetch(options.uri, {
+      "method": METHOD_MAP.DELETE,
+      "headers": {"Content-Type": params.contentType},
+      "credentials": "include",
+      "body": null
+    })
+    .then((response) => {
+      if (params.success) {
+        return params.success(response);
+      }
+      return response;
+    })
+    .then((response) => {
+      // null is the old xhr
+      model.trigger("request", model, null, options);
+      // Logger.debug("completing sync");
+      return response;
+    })
+    .catch((error) => {
+      if (params.error) {
+        return params.error(error);
+      }
+      console.error(error);
+      return error;
+    });
+  }
 
   return await fetch(options.uri, {
     "method": params.type,

@@ -7,7 +7,7 @@ describe("Given Presentation Request", () => {
 
 	describe("can fetch", () => {
 
-		it("can fetch a file via simple fetch", async () => {
+		xit("can fetch a file via simple fetch", async () => {
 			const response = await Request.request({
 				url: uri,
 				contentType: "application/html",
@@ -20,6 +20,6 @@ describe("Given Presentation Request", () => {
 			expect(response).to.be.true;
 		});
 
-		
+
 	});
 });

@@ -280,6 +280,6 @@ Base sync method that can pass special augmented features
 
 ### Parameters
 
--   `method`  
+-   `method`   (optional, default `METHOD_MAP.READ`)
 -   `model`  
--   `options`  
+-   `options`   (optional, default `{}`)
